@@ -14,17 +14,13 @@ PUBLIC_KEY=$4
 INTERFACE_IP=$5
 ALLOWED_IPS=$6
 
-# Become
-
-sudo su - 
-
 # Install wireguard
 
-apt-get install wireguard
+sudo apt-get install wireguard
 
 # Configure wireguard
 
-cat >/etc/wireguard/$INTERFACE_NAME.conf << EOF
+sudo cat >/etc/wireguard/$INTERFACE_NAME.conf << EOF
 [Interface]
 PrivateKey=$PRIVATE_KEY
 Address=$INTERFACE_IP/32
@@ -38,6 +34,6 @@ EOF
 
 # Start wireguard
 
-wg-quick up $INTERFACE_NAME
+sudo wg-quick up $INTERFACE_NAME
 
-wg show $INTERFACE_NAME
+sudo wg show $INTERFACE_NAME

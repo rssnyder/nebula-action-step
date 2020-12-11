@@ -15,6 +15,7 @@ jobs:
         actions-ip: "10.253.0.6"
         allowed-ips: "10.253.0.6, 10.253.0.15"
     - shell: bash
+      continue-on-error: true
       run: ping 10.253.0.1 -c 5
     - shell: bash
       run: ping 10.253.0.15 -c 5

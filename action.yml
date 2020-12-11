@@ -25,9 +25,9 @@ runs:
     - shell: bash
       run: |
         
-        ./setup.sh  "${{ inputs.network-name }}" \
-                    "${{ inputs.private-key }}" \
-                    "${{ inputs.hub-hostname }}" \
-                    "${{ inputs.public-key }}" \
-                    "${{ inputs.actions-ip }}" \
-                    "${{ inputs.allowed-ips }}" \
+        ${{ github.action_path }}/setup.sh  "${{ inputs.network-name }}" \
+                                            "${{ inputs.private-key }}" \
+                                            "${{ inputs.hub-hostname }}" \
+                                            "${{ inputs.public-key }}" \
+                                            "${{ inputs.actions-ip }}" \
+                                            "${{ inputs.allowed-ips }}" \

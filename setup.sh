@@ -20,7 +20,7 @@ sudo apt-get install wireguard
 
 # Configure wireguard
 
-sudo cat >/etc/wireguard/$INTERFACE_NAME.conf << EOF
+cat >$INTERFACE_NAME.conf << EOF
 [Interface]
 PrivateKey=$PRIVATE_KEY
 Address=$INTERFACE_IP/32
@@ -31,6 +31,8 @@ Endpoint=$HUB_HOSTNAME
 AllowedIPs=$ALLOWED_IPS
 PersistentKeepalive=15
 EOF
+
+sudo mv $INTERFACE_NAME.conf /etc/wireguard/
 
 # Start wireguard
 

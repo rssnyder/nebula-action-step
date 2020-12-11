@@ -7,7 +7,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - id: test
-      uses: rssnyder/wireguard-action-step@0.0.4
+      uses: rssnyder/wireguard-action-step@0.0.5
       with:
         private-key: ${{ secrets.PRIVATE_KEY }}
         hub-hostname: ${{ secrets.HUB_HOSTNAME }}

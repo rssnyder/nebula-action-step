@@ -22,8 +22,8 @@ inputs:
 runs:
   using: "composite"
   steps: 
-      shell: bash
-    - run: |
+    - shell: bash
+      run: |
         
         ./setup.sh  "${{ inputs.network-name }}" \
                     "${{ inputs.private-key }}" \

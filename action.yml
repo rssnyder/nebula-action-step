@@ -1,5 +1,8 @@
 name: 'nebula-network-connect'
 description: 'Connect to Nebula Network'
+branding:
+  icon: bar-chart
+  color: blue
 runs:
   using: "composite"
   steps: 

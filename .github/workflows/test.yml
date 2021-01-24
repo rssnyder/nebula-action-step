@@ -7,7 +7,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - id: test
-      uses: rssnyder/nebula-action-step@0.0.8
+      uses: rssnyder/nebula-action-step@0.0.9
       env:
         NEBULA_CA_CRT: ${{ secrets.NEBULA_CA_CRT }}
         NEBULA_NODE_CONF: ${{ secrets.NEBULA_NODE_CONF }}

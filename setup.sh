@@ -9,10 +9,12 @@ sudo tar zxfv /tmp/nebula.tar.gz -C /etc/nebula
 
 # Setup configuration
 
-sudo echo "$NEBULA_NODE_CRT" > /etc/nebula/host.crt
-sudo echo "$NEBULA_NODE_KEY" > /etc/nebula/host.key
-sudo echo "$NEBULA_NODE_CONF" | base64 -d > /etc/nebula/config.yml
-sudo echo "$NEBULA_CA_CRT" > /etc/nebula/ca.crt
+echo "$NEBULA_NODE_CRT" > host.crt
+echo "$NEBULA_NODE_KEY" > host.key
+echo "$NEBULA_NODE_CONF" | base64 -d > config.yml
+echo "$NEBULA_CA_CRT" > ca.crt
+
+sudo mv host.crt host.key config.yml ca.crt /etc/nebula/
 
 # Install service file
 

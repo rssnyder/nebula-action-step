@@ -1,4 +1,4 @@
-name: 'Nebula'
+name: 'nebula-network-connect'
 description: 'Connect to Nebula Network'
 runs:
   using: "composite"

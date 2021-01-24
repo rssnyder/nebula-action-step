@@ -1,41 +1,23 @@
 #!/bin/bash
 
-# Usage: ./setup.sh <interface name>
-#                   <private key>
-#                   <hub hostname>
-#                   <public key>
-#                   <interface ip>
-#                   <allowed ips>
+# Download Nebula
 
-INTERFACE_NAME=$1
-PRIVATE_KEY=$2
-HUB_HOSTNAME=$3
-PUBLIC_KEY=$4
-INTERFACE_IP=$5
-ALLOWED_IPS=$6
+curl -L https://github.com/slackhq/nebula/releases/download/v1.3.0/nebula-linux-amd64.tar.gz -o /tmp/nebula.tar.gz
 
-# Install wireguard
+sudo mkdir -p /etc/nebula
+sudo tar zxfv /tmp/nebula.tar.gz /etc/nebula/
 
-sudo apt-get install wireguard
+# Setup configuration
 
-# Configure wireguard
+echo $NEBULA_NODE_CRT > /etc/nebula/host.crt
+echo $NEBULA_NODE_KEY > /etc/nebula/host.key
+echo $NEBULA_NODE_CONF | base64 -d > /etc/nebula/config.yml
+echo $NEBULA_CA_CRT > /etc/nebula/ca.crt
 
-cat >$INTERFACE_NAME.conf << EOF
-[Interface]
-PrivateKey=$PRIVATE_KEY
-Address=$INTERFACE_IP/32
+# Install service file
 
-[Peer]
-PublicKey=$PUBLIC_KEY
-Endpoint=$HUB_HOSTNAME
-AllowedIPs=$ALLOWED_IPS
-PersistentKeepalive=15
-EOF
+sudo cp nebula.service /etc/systemd/system/
 
-sudo mv $INTERFACE_NAME.conf /etc/wireguard/
+sudo systemctl daemon-reload
 
-# Start wireguard
-
-sudo wg-quick up $INTERFACE_NAME
-
-sudo wg show $INTERFACE_NAME
+sudo systemctl start nebula.service

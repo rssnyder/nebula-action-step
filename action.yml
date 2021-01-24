@@ -1,33 +1,8 @@
-name: 'WireGuard'
-description: 'Connect to WireGuard Network'
-inputs:
-  network-name:  # id of input
-    description: 'name of the network to join'
-    required: false
-    default: 'wg0'
-  private-key:  # id of input
-    description: 'private key for actions runner interface'
-    required: true
-  hub-hostname:
-    description: 'hostname or ip of your wireguard server (with port)'
-  public-key:  # id of input
-    description: 'public key of wireguard hub'
-    required: true
-  actions-ip:  # id of input
-    description: 'ip address for actions runner interface on vpn'
-    required: true
-  allowed-ips:  # id of input
-    description: 'ips the actions runner is allowed to access'
-    required: true
+name: 'Nebula'
+description: 'Connect to Nebula Network'
 runs:
   using: "composite"
   steps: 
     - shell: bash
-      run: |
-        
-        ${{ github.action_path }}/setup.sh  "${{ inputs.network-name }}" \
-                                            "${{ inputs.private-key }}" \
-                                            "${{ inputs.hub-hostname }}" \
-                                            "${{ inputs.public-key }}" \
-                                            "${{ inputs.actions-ip }}" \
-                                            "${{ inputs.allowed-ips }}" \
+      working-directory: ${{ github.action_path }}
+      run: ./setup.sh

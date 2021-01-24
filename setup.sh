@@ -5,7 +5,7 @@
 curl -L https://github.com/slackhq/nebula/releases/download/v1.3.0/nebula-linux-amd64.tar.gz -o /tmp/nebula.tar.gz
 
 sudo mkdir -p /etc/nebula
-sudo tar zxfv /tmp/nebula.tar.gz -C /tmp/testy/
+sudo tar zxfv /tmp/nebula.tar.gz -C /etc/nebula
 
 # Setup configuration
 

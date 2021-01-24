@@ -1,21 +1,20 @@
 on: [push]
 
 jobs:
-  test-wg-connection:
+  test-nebula-connection:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
     - uses: actions/checkout@v2
     - id: test
-      uses: rssnyder/wireguard-action-step@0.0.6
-      with:
-        private-key: ${{ secrets.PRIVATE_KEY }}
-        hub-hostname: ${{ secrets.HUB_HOSTNAME }}
-        public-key: ${{ secrets.PUBLIC_KEY }}
-        actions-ip: "10.253.0.6"
-        allowed-ips: "10.253.0.6, 10.253.0.15"
+      uses: rssnyder/nebula-action-step@0.0.7
+      env:
+        NEBULA_CA_CRT: ${{ secrets.NEBULA_CA_CRT }}
+        NEBULA_NODE_CONF: ${{ secrets.NEBULA_NODE_CONF }}
+        NEBULA_NODE_CRT: ${{ secrets.NEBULA_NODE_CRT }}
+        NEBULA_NODE_KEY: ${{ secrets.NEBULA_NODE_KEY }}
     - shell: bash
       continue-on-error: true
-      run: ping 10.253.0.1 -c 5
+      run: ping 192.168.100.1 -c 5
     - shell: bash
-      run: ping 10.253.0.15 -c 5
+      run: ping 192.168.100.4 -c 5

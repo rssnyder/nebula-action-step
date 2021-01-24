@@ -1,0 +1,8 @@
+name: 'Nebula'
+description: 'Connect to Nebula Network'
+runs:
+  using: "composite"
+  steps: 
+    - shell: bash
+      working-directory: ${{ github.action_path }}
+      run: ./setup.sh
